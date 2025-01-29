@@ -15,6 +15,8 @@ var bicicletasAPIRouter = require('./routes/api/bicicletas');
 
 var app = express();
 
+var cors = require("cors");
+
 const options = {
   definition: {
     openapi: "3.1.0",
@@ -58,6 +60,12 @@ app.use(
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+app.use(cors({
+  origin: 'https://aleizey.github.io',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ' Content-Type, Authorization',
+}))
 
 app.use(logger('dev'));
 // app.use(express.json());
